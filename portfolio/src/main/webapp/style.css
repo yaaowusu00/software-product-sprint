@@ -3,6 +3,9 @@
   margin-right: auto;
   width: 650px;
 }
+body {
+  background-color: lightblue;
+}
 
 #greeting-container {
   margin-top: 20px;
