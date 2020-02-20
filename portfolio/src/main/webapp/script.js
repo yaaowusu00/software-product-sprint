@@ -17,7 +17,7 @@
  */
 function addRandomFact() {
   const facts =
-      ['I play the flute', 'My birthday is in November', 'I have 2 older Brothers', 'I am from New York'];
+      ['I don\'t have any pets. ', 'My birthday is in November.', 'I have 2 older brothers.', 'I love to cook!'];
 
   // Pick a random fact.
   const fact = facts[Math.floor(Math.random() * facts.length)];
@@ -27,3 +27,4 @@ function addRandomFact() {
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = fact;
 }
+
