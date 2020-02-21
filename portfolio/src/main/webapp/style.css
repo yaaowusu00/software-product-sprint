@@ -14,7 +14,7 @@ h1 {
   background-color: #333;
   overflow: hidden;
 }
-.hobby2 {
+#hobby2 {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -45,14 +45,14 @@ img.selfies {
   max-width:50%;
   max-height:50%;
 }
-img.hobbies {
-      display: block;
+#hobbies {
+  display: block;
   margin-left: auto;
   margin-right: auto;
   max-width:50%;
   max-height:50%;
 }
-img.headshot {
+#headshot {
   max-width:30%;
   max-height:30%;
 }
