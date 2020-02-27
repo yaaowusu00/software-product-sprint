@@ -27,10 +27,12 @@ function addRandomFact() {
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = fact;
 }
-
+// Adds a hello message to the page 
 function getMessage() {
   fetch('/data').then(response => response.text()).then((message) => {
-    document.getElementById('message-container').innerText = message;
+    document.getElementById('comment').innerText = message;
+    console.log(message[0]);
   });
+  
 }
 
