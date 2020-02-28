@@ -25,8 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
     ArrayList<String> msgs = new ArrayList<String>();
-
-    
+  
   /*//fills an ArrayList with 3 messages
   public ArrayList makeMessage(){
     ArrayList<String> msgs = new ArrayList<String>();
@@ -41,7 +40,7 @@ public class DataServlet extends HttpServlet {
     String json = gson.toJson(msgs);
     return json;
   }
-@Override
+  @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     
     // Get the input from the form, add comment to the ArrayList
@@ -57,7 +56,8 @@ public class DataServlet extends HttpServlet {
     String comment = request.getParameter("com");
     return comment;
   }
-  
+
+  //converts arrayList of comments to json and return it
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json;");
