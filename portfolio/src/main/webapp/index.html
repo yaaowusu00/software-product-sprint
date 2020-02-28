@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="getMessage()">
     <h1>Yaa Owusu</h1>
    
     <div class="topnav">
@@ -28,6 +28,17 @@
       <p>Click here for a hello message:</p>
       <button onclick="getMessage()">Message</button>
       <div id="message-container"></div>
+      <div id="comment"></div>
     </div>
+
+    <form action="/data" method="POST">
+
+      <p>Leave a comment!:</p>
+      <input type="text" name = "com">
+      <br/><br/>
+
+      <input type="submit" onclick="getMessage()"/>
+    </form>
+    
   </body>
 </html>
