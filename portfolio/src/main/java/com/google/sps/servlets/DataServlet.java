@@ -15,6 +15,12 @@
 package com.google.sps.servlets;
 import com.google.gson.Gson;
 import java.util.*; 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,28 +32,21 @@ import javax.servlet.http.HttpServletResponse;
 public class DataServlet extends HttpServlet {
     ArrayList<String> msgs = new ArrayList<String>();
   
-  /*//fills an ArrayList with 3 messages
-  public ArrayList makeMessage(){
-    ArrayList<String> msgs = new ArrayList<String>();
-    msgs.add("hi");
-    msgs.add("bye");
-    return msgs;
-  }*/
-  
-  //converts the message ArrayList to Json
-  private String convertToJsonUsingGson(ArrayList<String> msgs) {
-    Gson gson = new Gson();
-    String json = gson.toJson(msgs);
-    return json;
-  }
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     
     // Get the input from the form, add comment to the ArrayList
      String  userComment = getuserComment(request);
      msgs.add(userComment);
-    //System.out.println(userComment);
 
+    //new Comment entity with the user's comment in it 
+    Entity comEntity = new Entity("Comment");
+    comEntity.setProperty("string", userComment);
+
+    //put the comment in the database
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(comEntity);
+    
     response.setContentType("text/html");  
     response.sendRedirect("/index.html");
   }
@@ -57,13 +56,22 @@ public class DataServlet extends HttpServlet {
     return comment;
   }
 
-  //converts arrayList of comments to json and return it
+  //fetches comments from the database
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    Query query = new Query("Comment");
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+    ArrayList<String> comList = new ArrayList<String>();
+
+    //iterate through all the comments 
+    for (Entity entity : results.asIterable()) {
+      String com  = (String)entity.getProperty("string");
+      comList.add(com);
+    }
+
+    Gson gson = new Gson();
     response.setContentType("application/json;");
-    String json = convertToJsonUsingGson(msgs);
-    response.getWriter().println(json);
+    response.getWriter().println(gson.toJson(comList));
   }
-
-
 }
