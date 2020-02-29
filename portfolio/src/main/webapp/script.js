@@ -22,17 +22,15 @@ function addRandomFact() {
   // Pick a random fact.
   const fact = facts[Math.floor(Math.random() * facts.length)];
 
-
   // Add it to the page.
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = fact;
 }
-// Adds a hello message to the page 
+
+// Adds the user's comments to the page 
 function getMessage() {
   fetch('/data').then(response => response.text()).then((message) => {
     document.getElementById('comment').innerText = message;
     console.log(message[0]);
   });
-  
 }
-
