@@ -29,11 +29,17 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-    ArrayList<String> msgs = new ArrayList<String>();
-  
+  private ArrayList<String> msgs;
+  private DatastoreService datastore;
+
   @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    
+  public void init() { //constructor
+    this.msgs= new ArrayList<String>();
+    this.datastore = DatastoreServiceFactory.getDatastoreService();
+  }
+   
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {  
     // Get the input from the form, add comment to the ArrayList
      String  userComment = getuserComment(request);
      msgs.add(userComment);
@@ -43,7 +49,7 @@ public class DataServlet extends HttpServlet {
     comEntity.setProperty("string", userComment);
 
     //put the comment in the database
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+   // DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(comEntity);
     
     response.setContentType("text/html");  
@@ -59,7 +65,7 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query("Comment");
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    //DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
     ArrayList<String> comList = new ArrayList<String>();
 
