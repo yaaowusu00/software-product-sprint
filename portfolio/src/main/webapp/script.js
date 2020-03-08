@@ -29,8 +29,8 @@ function addRandomFact() {
 
 // Adds the user's comments to the page 
 function getMessage() {
-  fetch('/data').then(response => response.text()).then((message) => {
-    document.getElementById('comment').innerText = message;
-    console.log(message[0]);
+  fetch('/data').then(response => response.text()).then((messages) => {
+    document.getElementById('comment').innerHTML = messages;
   });
 }
+
