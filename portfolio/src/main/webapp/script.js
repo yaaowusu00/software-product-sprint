@@ -27,18 +27,18 @@ function addRandomFact() {
   factContainer.innerText = fact;
 }
 
-// Adds the user's comments to the page 
+//Adds the user's comments to the page 
 function getMessage() {
   const commentContainer = document.getElementById('comment');
   fetch('/data').then(response => response.json()).then((messages) => {
-     messages.forEach((line) => {
-         commentContainer.appendChild(newLiElement(line));
-     });
+    messages.forEach((line) => {
+      commentContainer.appendChild(newLiElement(line));
     });
+  });
 }
 
 function requestTranslation() {
- //constructing the query string 
+  //constructing the query string 
   const code = document.getElementById('language').value;
   const params = new URLSearchParams();
   params.append('languageCode', code);
@@ -51,7 +51,7 @@ function requestTranslation() {
 }
   fetch(url).then(response => response.json()).then((messages) => {
     messages.forEach((line) => {
-       resultContainer.appendChild(newLiElement(line));
+      resultContainer.appendChild(newLiElement(line));
     });    
   });
 }

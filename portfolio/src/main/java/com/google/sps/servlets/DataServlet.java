@@ -46,7 +46,7 @@ public class DataServlet extends HttpServlet {
     // Get the input from the form, add comment to the ArrayList
      String  userComment = getuserComment(request);
      
-    if ((userComment != null) || (userComment!= "")) {
+    if (userComment != null || userComment!= "") {
         msgs.add(userComment);
         //new Comment entity with the user's comment in it 
         Entity comEntity = new Entity("Comment");
@@ -55,7 +55,6 @@ public class DataServlet extends HttpServlet {
         //put the comment in the database
         datastore.put(comEntity);
     
-
     }
     response.setContentType("text/html");  
     response.sendRedirect("/index.html");
@@ -89,11 +88,9 @@ public class DataServlet extends HttpServlet {
       //iterate through all the comments and translate them 
       for (Entity entity : results.asIterable()) {
          String com  = (String)entity.getProperty("string");
-         Translation translation =
-         translate.translate(com, Translate.TranslateOption.targetLanguage(code));
-         String translatedText = translation.getTranslatedText();
-         comList.add(translatedText);
-        }   
+         Translation translation = translate.translate(com, Translate.TranslateOption.targetLanguage(code));
+         comList.add(translation.getTranslatedText());;
+      }   
     }
     
     Gson gson = new Gson(); 
