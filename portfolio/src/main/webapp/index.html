@@ -8,7 +8,6 @@
   </head>
   <body onload="getMessage()">
     <h1>Yaa Owusu</h1>
-
     <div class="topnav">
         <a class="active" href="#home">Home</a>
         <a href="projects.html">Projects</a>
@@ -17,7 +16,8 @@
         <a href="https://www.linkedin.com/in/yaa-owusu-4293ab1a1" class=linkedIn>
         <img alt="liLogo" src="https://www.stickpng.com/assets/images/58e91afdeb97430e81906504.png"
              width="25" height="25">
-        </a>     
+        </a>
+
     </div>
     <div id="content">
       <p>Sophomore at Yale University interested in Software Engineering and UX Design.</p>
@@ -25,14 +25,27 @@
       <p>Click here to get a random fact about me:</p>
       <button onclick="addRandomFact()">Hello</button>
       <div id="fact-container"></div>
-      <div id="comment"></div>
     </div>
+    <div id="commentBox">
+      <h2>Comments</h1>
+      <div class="dropdown">
+        <button class="dropbtn" onclick="requestTranslation();"> Translate Comments!</button>
+          <select id="language">
+             <option value="zh">Chinese</option>
+             <option value="es">Spanish</option>
+             <option value="ar">Arabic</option>
+             <option value="fr">French</option>
+          </select>
+      </div> 
+      <ul id="comment"></ul>
+      <ul id="translationResult"></ul>
     <form action="/data" method="POST">
       <p>Leave a comment!:</p>
       <input type="text" name = "com" size="100">
       <br/><br/>
       <input type="submit" onclick="getMessage()"/>
     </form>
+    </div>
 
   </body>
 </html>
