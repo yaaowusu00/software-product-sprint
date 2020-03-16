@@ -82,7 +82,7 @@ public final class FindMeetingQuery {
                 }
             }
             //check if the time ranges between the inner busy times of the day will work 
-            if ((i != mergedBusy.size() - 1) && ((i + 1) < mergedBusy.size())) { //make a variable //if i we are not on the last range , get time ranges in between 
+            if ((i != mergedBusy.size() - 1) && ((i + 1) < mergedBusy.size())) { //if not on the last range , get time ranges in between 
                 range = mergedBusy.get(i + 1).start() - mergedBusy.get(i).end();
                 if (request.getDuration() <= range) {
                     TimeRange inbetween = TimeRange.fromStartDuration(mergedBusy.get(i).end(), range);
